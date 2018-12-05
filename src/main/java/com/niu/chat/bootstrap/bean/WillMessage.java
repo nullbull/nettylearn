@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Builder
 @Data
-public class WillMeaasge {
+public class WillMessage {
 
     private String willTopic;
 

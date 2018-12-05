@@ -1,7 +1,7 @@
 package com.niu.chat.bootstrap;
 
 import com.niu.chat.bootstrap.bean.MqttChannel;
-import com.niu.chat.bootstrap.bean.WillMeaasge;
+import com.niu.chat.bootstrap.bean.WillMessage;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.mqtt.MqttConnectMessage;
 import io.netty.handler.codec.mqtt.MqttPublishMessage;
@@ -28,7 +28,7 @@ public interface IChannelService {
 
     void closeSuccess(String deviceId, boolean isDisconnect);
 
-    void sendWillMsg(WillMeaasge willMeaasge);
+    void sendWillMsg(WillMessage willMeaasge);
 
     String  getDeviceId(Channel channel);
 

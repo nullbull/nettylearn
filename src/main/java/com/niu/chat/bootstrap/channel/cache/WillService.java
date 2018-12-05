@@ -2,7 +2,7 @@ package com.niu.chat.bootstrap.channel.cache;
 
 import com.niu.chat.bootstrap.BaseApi;
 import com.niu.chat.bootstrap.IChannelService;
-import com.niu.chat.bootstrap.bean.WillMeaasge;
+import com.niu.chat.bootstrap.bean.WillMessage;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,15 +25,15 @@ public class WillService implements BaseApi {
     @Autowired
     IChannelService channelService;
 
-    private static ConcurrentHashMap<String, WillMeaasge> willMessages = new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<String, WillMessage> willMessages = new ConcurrentHashMap<>();
 
-    public void  save(String deviceId, WillMeaasge build) {
+    public void  save(String deviceId, WillMessage build) {
         willMessages.put(deviceId, build);
     }
 
     public void doSend(String deviceId) {
         if (StringUtils.isNotBlank(deviceId) && null != (willMessages).get(deviceId)) {
-            WillMeaasge willMeaasge = willMessages.get(deviceId);
+            WillMessage willMeaasge = willMessages.get(deviceId);
             channelService.sendWillMsg(willMeaasge);
             if (!willMeaasge.isRetain()) {
                 willMessages.remove(deviceId);
