@@ -1,12 +1,12 @@
 package com.niu.chat.common.mqtts;
 
+import io.netty.channel.Channel;
 import io.netty.handler.codec.mqtt.MqttConnectMessage;
 import io.netty.handler.codec.mqtt.MqttPublishMessage;
 import io.netty.handler.codec.mqtt.MqttSubscribeMessage;
 import io.netty.handler.codec.mqtt.MqttUnsubscribeMessage;
 import io.netty.handler.timeout.IdleStateEvent;
 
-import java.nio.channels.Channel;
 
 /**
  * @author: justinniu

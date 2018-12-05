@@ -121,7 +121,8 @@ public class MqttChannelService extends AbstractChannelService {
 
     @Override
     public MqttChannel getMqttChannel(String deviceId) {
-        return null;
+        return Optional.ofNullable(deviceId).map(s -> mqttChannelMap.get(s))
+                .orElse(null);
     }
 
     @Override
@@ -295,7 +296,24 @@ public class MqttChannelService extends AbstractChannelService {
 
     @Override
     public void sendWillMsg(WillMeaasge willMeaasge) {
+        Collection<MqttChannel> mqttChannels = getChannels(willMeaasge.getWillTopic(), topic -> cacheMap.getData(getTopic(topic)));
+        if (!CollectionUtils.isEmpty(mqttChannels)) {
+            mqttChannels.forEach(mqttChannel -> {
+                switch (mqttChannel.getSessionStatus()) {
+                    case CLOSE:
+                        clientSessionService.saveSessionMsg(mqttChannel.getDeviceId(), SessionMessage.builder()
+                                .topic(willMeaasge.getWillTopic())
+                                .qoS(MqttQoS.valueOf(willMeaasge.getQos()))
+                                .byteBuf(willMeaasge.getWillMessage().getBytes())
+                                .build());
+                            break;
+                    case OPEN:
+                        writeWillMsg(mqttChannel, willMeaasge);
+                        break;
+                }
 
+            });
+        }
     }
 
     @Override
@@ -310,7 +328,11 @@ public class MqttChannelService extends AbstractChannelService {
 
     @Override
     public void doPubrel(Channel channel, int mqttMessage) {
-
+        MqttChannel mqttChannel = getMqttChannel((getDeviceId(channel)));
+        doIfElse(mqttChannel,mqttChannel1 -> mqttChannel1.isLogin(), mqttChannel1 -> {
+            mqttChannel1.removeRecevice(mqttMessage);
+            sendToPubComp(channel, mqttMessage);
+        } );
     }
 
     @Override
