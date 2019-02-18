@@ -67,7 +67,7 @@ public class MqttChannelService extends AbstractChannelService {
                 if (!b) {
                     throw new ConnectionException("will message and will topic is not null");
                 }
-                final WillMeaasge buildWill = WillMeaasge.builder()
+                final WillMessage buildWill = WillMessage.builder()
                         .qos(mqttConnectVariableHeader.willQos())
                         .willMessage(deviceId)
                         .willTopic(payload.willTopic())
@@ -295,7 +295,7 @@ public class MqttChannelService extends AbstractChannelService {
     }
 
     @Override
-    public void sendWillMsg(WillMeaasge willMeaasge) {
+    public void sendWillMsg(WillMessage willMeaasge) {
         Collection<MqttChannel> mqttChannels = getChannels(willMeaasge.getWillTopic(), topic -> cacheMap.getData(getTopic(topic)));
         if (!CollectionUtils.isEmpty(mqttChannels)) {
             mqttChannels.forEach(mqttChannel -> {

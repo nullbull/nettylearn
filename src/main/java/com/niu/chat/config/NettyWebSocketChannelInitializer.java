@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  **/
 public class NettyWebSocketChannelInitializer extends ChannelInitializer<SocketChannel> {
 
-    @Autowired
-    private Tex
+//    @Autowired
+//    private Tex
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
 

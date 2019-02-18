@@ -5,6 +5,7 @@ import com.niu.chat.common.properties.InitNetty;
 import com.niu.chat.common.utils.RemoteUtil;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
@@ -54,7 +55,13 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
                 .childOption(ChannelOption.TCP_NODELAY, serverBean.isNodelay())
                 .childOption(ChannelOption.SO_KEEPALIVE, serverBean.isKeepalive())
                 .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
-        bootstrap.bind(IpUtils.getHost(), serverBean.getMqttport())
+        bootstrap.bind(IpUtils.getHost(), serverBean.getMqttport()).addListener((ChannelFutureListener) channelFuture -> {
+            if (channelFuture.isSuccess()) {
+                log.info("服务器端启动成功[{} : {}]", IpUtils.getHost(), serverBean.getMqttport());
+            } else {
+                log.info("服务器端启动失败[{} : {}]", IpUtils.getHost(), serverBean.getMqttport());
+            }
+        });
     }
 
     private void initEventPool() {

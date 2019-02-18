@@ -1,5 +1,7 @@
 package com.niu.chat.common.properties;
 
+import com.niu.chat.common.enums.ProtocolEnum;
+import com.niu.chat.common.mqtts.AbstractMqttHandler;
 import com.niu.chat.common.websockets.AbstractWebSocketHandler;
 import com.niu.chat.common.websockets.IWebSocketHandler;
 import lombok.Data;
@@ -11,9 +13,16 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @desc:
  **/
 @Data
-@ConfigurationProperties(prefix = "inchat")
+@ConfigurationProperties(prefix = "netty")
 public class InitNetty {
+
+    private ProtocolEnum protocol;
+
     private int webport;
+
+    private int tcpport;
+
+    private int mqttport;
 
     private int bossThread;
 
@@ -27,22 +36,26 @@ public class InitNetty {
 
     private boolean reuseaddr;
 
-    private  int  sndbuf;
+    private String serverName;
+
+    private int sndbuf;
 
     private int revbuf;
 
     private int heart;
 
-    private int period;
+    private boolean ssl;
 
-    private String serverName;
+    private String jksFile;
+
+    private String jksStorePassword;
+
+    private String jksCertificatePassword;
+
+    private Class<AbstractMqttHandler> mqttHandler;
 
     private int initalDelay;
 
-    private int maxContext;
-
-    private String webSocketPath;
-
-    private Class<AbstractWebSocketHandler> webSocketHandler;
-
+    private int period;
 }
+

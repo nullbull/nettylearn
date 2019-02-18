@@ -10,7 +10,8 @@ import java.nio.channels.Channel;
  **/
 public class CRC16 {
 
-    public static String getAllString(String channelId, String type, String data) {
+    public static String
+    getAllString(String channelId, String type, String data) {
         String temp = channelId + type + data;
         String crcString = getCRC(temp.getBytes());
         String result = Constants.HEAD + temp + crcString + Constants.TAIL;

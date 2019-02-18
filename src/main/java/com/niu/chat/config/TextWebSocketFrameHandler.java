@@ -11,7 +11,7 @@ import io.netty.util.concurrent.GlobalEventExecutor;
  * @date: 2018-11-28 15:16
  * @desc:
  **/
-public class TextWEbSocketFrameHandler extends SimpleChannelInboundHandler<Object> {
+public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<Object> {
 
     public static ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 

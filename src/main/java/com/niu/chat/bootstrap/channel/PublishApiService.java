@@ -2,7 +2,7 @@ package com.niu.chat.bootstrap.channel;
 
 import com.niu.chat.bootstrap.bean.MqttChannel;
 import com.niu.chat.bootstrap.bean.SendMqttMessage;
-import com.niu.chat.bootstrap.bean.WillMeaasge;
+import com.niu.chat.bootstrap.bean.WillMessage;
 import com.niu.chat.bootstrap.scan.ScanRunnable;
 import com.niu.chat.common.enums.ConfirmStatus;
 import com.niu.chat.common.utils.MessageId;
@@ -29,7 +29,7 @@ public class PublishApiService {
     /**
      * 写入遗嘱消息
      */
-    protected void writeWillMsg(MqttChannel mqttChannel, WillMeaasge willMeaasge) {
+    protected void writeWillMsg(MqttChannel mqttChannel, WillMessage willMeaasge) {
 //        dup保证消息可靠传输，默认为0，只占用一个字节，表示第一次发送。不能用于检测消息重复发送等
         switch (willMeaasge.getQos()){
             case 0: // qos0
