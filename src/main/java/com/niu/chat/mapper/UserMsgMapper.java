@@ -2,6 +2,7 @@ package com.niu.chat.mapper;
 
 import com.niu.chat.entity.UserMsg;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Component;
 
 /**
  * <p>

@@ -4,15 +4,18 @@ import com.niu.chat.config.NettyConfig;
 import com.niu.chat.config.NettyTcpConfig;
 import com.niu.chat.config.TCPServer;
 import org.checkerframework.checker.units.qual.C;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling //定时任务支持
+@MapperScan("com.niu.chat.mapper")
 public class ChatApplication {
 
     public static void main(String[] args) {

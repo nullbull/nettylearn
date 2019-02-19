@@ -54,7 +54,7 @@ public class ServerAutoConfigure {
     @ConditionalOnMissingBean
     public InitServer initServer(InitNetty serverBean){
         if(!ObjectUtils.allNotNull(serverBean.getMqttport(),serverBean.getServerName())){
-            throw  new NullPointerException("not set port");
+            throw new NullPointerException("not set port");
         }
         if(serverBean.getBacklog()<1){
             serverBean.setBacklog(_BLACKLOG);

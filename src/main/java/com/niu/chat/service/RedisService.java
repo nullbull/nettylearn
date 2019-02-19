@@ -19,7 +19,9 @@ import java.util.stream.Collectors;
 public class RedisService {
     @Autowired
     private RedisUtil redisUtil;
-
+    /**
+     *
+     */
     String CHANNEL_MAP = "channle:map";
     String ONLINE = "online:";
     public boolean saveChannel(Object name, Object channel) {
@@ -34,7 +36,7 @@ public class RedisService {
         return redisUtil.hset(ONLINE, (String)id, name);
     }
 
-    public void deleteChannel(Object name) {
+    public void deleteChannel(Object name) throws Exception {
         redisUtil.hdel(CHANNEL_MAP, (String)name);
     }
 
@@ -61,6 +63,8 @@ public class RedisService {
         result = redisUtil.hgetAll(ONLINE).keySet().stream().collect(Collectors.toList());
         return result;
     }
-
+    public void delete(Object id) throws Exception {
+        redisUtil.hdel(ONLINE, id);
+    }
 
 }

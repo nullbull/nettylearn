@@ -1,6 +1,7 @@
 package com.niu.chat.constont;
 
 import com.niu.chat.entity.UserMsg;
+import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  * @date 2019/2/18 14:02
  * @desc
  */
+@Component
 public class LikeSomeCacheTemplate {
     private List<UserMsg> SomeCache = new LinkedList<>();
 

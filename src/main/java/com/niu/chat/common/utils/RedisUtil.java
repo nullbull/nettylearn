@@ -140,7 +140,18 @@ public class RedisUtil {
         }
     }
 
-    public boolean set(ERedisKey e, String key, Object value) {
+    /**
+     * 删除hash
+     * @param key key
+     * @param part 键
+     * @return
+     * @throws Exception
+     */
+    public long hdel(String key, String part) throws Exception{
+        return jedisPool.getResource().hdel(key, part);
+    }
+
+    public boolean set(ERedisKey e, String key, Object value) throws Exception{
       return set(e.getName() + key, value, e.getExpireTime());
     }
 
@@ -270,7 +281,7 @@ public class RedisUtil {
      * @param item 项 可以使多个 不能为null
      */
     public void hdel(String key, Object... item){
-       redisTemplate.opsForHash().delete(key,item);
+       redisTemplate.opsForHash().delete(key, item);
     }
 
     /**
@@ -470,7 +481,9 @@ public class RedisUtil {
     public boolean lSet(String key, Object value, long time) {
         try {
             redisTemplate.opsForList().rightPush(key, value);
-            if (time > 0) expire(key, time);
+            if (time > 0) {
+                expire(key, time);
+            }
             return true;
         } catch (Exception e) {
             e.printStackTrace();

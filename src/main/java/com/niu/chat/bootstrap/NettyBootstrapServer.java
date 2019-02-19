@@ -12,6 +12,7 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.epoll.Epoll;
 import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollServerSocketChannel;
+import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import lombok.Data;
@@ -83,14 +84,14 @@ public class NettyBootstrapServer extends AbstractBootstrapServer {
             });
 
         } else {
-            bossGroup = new EpollEventLoopGroup(serverBean.getBossThread(), new ThreadFactory() {
+            bossGroup = new NioEventLoopGroup(serverBean.getBossThread(), new ThreadFactory() {
                 private AtomicInteger index = new AtomicInteger(0);
                 @Override
                 public Thread newThread(Runnable r) {
                     return new Thread(r, "BOSS_" + index.incrementAndGet());
                 }
             });
-            workGroup = new EpollEventLoopGroup(serverBean.getBossThread(), new ThreadFactory() {
+            workGroup = new NioEventLoopGroup(serverBean.getBossThread(), new ThreadFactory() {
                 private AtomicInteger index = new AtomicInteger(0);
                 @Override
                 public Thread newThread(Runnable r) {

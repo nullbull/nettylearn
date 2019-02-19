@@ -42,7 +42,7 @@ public abstract class AbstractBootstrapServer implements IBootstrapServer {
      * @param serverBean  服务配置参数
      */
 
-    protected  void initHandler(ChannelPipeline channelPipeline, InitNetty serverBean){
+    protected void initHandler(ChannelPipeline channelPipeline, InitNetty serverBean){
         if(serverBean.isSsl()){
             if(!ObjectUtils.allNotNull(serverBean.getJksCertificatePassword(),serverBean.getJksFile(),serverBean.getJksStorePassword())){
                 throw  new NullPointerException("SSL file and password is null");
