@@ -27,7 +27,7 @@ public class WillService {
 
     private static ConcurrentHashMap<String, WillMessage> willMessageMap = new ConcurrentHashMap<>();
 
-    private void save(String deviceId, WillMessage build) {
+    public void save(String deviceId, WillMessage build) {
         willMessageMap.put(deviceId, build);
     }
 

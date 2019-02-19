@@ -57,7 +57,7 @@ public class JedisConfig {
 
             logger.info("JedisPool注入成功！");
             logger.info("redis地址：" + host + ":" + port);
-            return  jedisPool;
+            return jedisPool;
         }
 
 }

@@ -4,13 +4,24 @@ spring:
     username: root
     password: root
     url: jdbc:mysql://localhost:3306/nettychat?characterEncoding=utf-8&useSSL=false
-mybatis-plus:
-  config-location: classpath:mybatis-config.xml
-  mapper-locations: classpath*:mapper/*.xml
-
-server:
-  servlet:
-    context-path: /susu
+  jpa:
+    show-sql: true
+  main:
+    allow-bean-definition-overriding: true
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 5
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: 91
+        max-idle: 8
+        min-idle: 0
+#    database: oracle
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.Oracle12cDialect
 netty:
   webport: 8090 #web聊天室端口
   tcpport: 8092 #tcp协议端口
@@ -33,3 +44,4 @@ netty:
   jksFile:  /securesocket.jks # ssl 加密 jks文件地址
   jksStorePassword: mu$tch8ng3 # 读取jks密码
   jksCertificatePassword: inc0rrect # 读取私钥密码
+

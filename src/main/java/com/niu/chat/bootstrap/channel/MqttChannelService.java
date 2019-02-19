@@ -1,7 +1,6 @@
 package com.niu.chat.bootstrap.channel;
 
 import com.niu.chat.bootstrap.bean.*;
-import com.niu.chat.bootstrap.channel.cache.WillService;
 import com.niu.chat.bootstrap.scan.ScanRunnable;
 import com.niu.chat.common.enums.ConfirmStatus;
 import com.niu.chat.common.enums.SessionStatus;
@@ -41,6 +40,7 @@ public class MqttChannelService extends AbstractChannelService {
     private WillService willService;
 
     private final ScanRunnable scanRunnable;
+
     public MqttChannelService(ScanRunnable scanRunnable) {
         super(scanRunnable);
         this.scanRunnable = scanRunnable;

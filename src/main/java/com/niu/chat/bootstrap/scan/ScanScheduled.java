@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
  * @desc:
  **/
 @Slf4j
-@Component
 public class ScanScheduled extends ScanRunnable {
 
     private final long time;

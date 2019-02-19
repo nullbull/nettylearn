@@ -10,6 +10,7 @@ import io.netty.handler.logging.LoggingHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import javax.xml.ws.Action;
 import java.net.InetSocketAddress;
@@ -20,6 +21,7 @@ import java.util.*;
  * @date: 2018-11-28 14:59
  * @desc:
  **/
+@Component
 public class NettyConfig {
     @Autowired
     private InitNetty nettyConfig;
@@ -54,7 +56,6 @@ public class NettyConfig {
     private NettyWebSocketChannelInitializer nettyWebSocketChannelInitializer;
 
     @Bean(name = "serverBootstrap")
-    @SuppressWarnings("rawtypes")
     public ServerBootstrap bootstrap() {
         ServerBootstrap b = new ServerBootstrap();
         b.group(bossGroup(), workGroup())
