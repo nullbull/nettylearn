@@ -37,12 +37,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public List<User> findAll() {
-        return null;
+        return userMapper.selectList(new QueryWrapper<>());
     }
 
     @Override
     public User create(User user) {
-        return null;
+        return userMapper.insert(user);
     }
 
 }
