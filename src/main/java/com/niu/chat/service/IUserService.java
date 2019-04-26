@@ -2,6 +2,7 @@ package com.niu.chat.service;
 
 import com.niu.chat.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import io.swagger.models.auth.In;
 
 import java.util.List;
 
@@ -21,6 +22,6 @@ public interface IUserService extends IService<User> {
 
     List<User> findAll();
 
-    User create(User user);
+    Integer create(User user);
 
 }

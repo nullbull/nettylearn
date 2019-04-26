@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 
 
 /**
- * @author  MySelf
+ * @author  niuzhenhao
  * @create  2018/9/22
  * @desc 自动化配置初始化服务
  **/

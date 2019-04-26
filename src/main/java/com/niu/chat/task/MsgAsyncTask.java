@@ -1,7 +1,7 @@
 package com.niu.chat.task;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.query.EmptyWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.niu.chat.constont.LikeSomeCacheTemplate;
 import com.niu.chat.entity.User;
 import com.niu.chat.entity.UserMsg;
@@ -37,7 +37,7 @@ public class MsgAsyncTask {
     public Future<Boolean> saveChatMsgTask() throws Exception {
         List<UserMsg> userMsgList = template.cloneCacheMap();
         for (UserMsg i : userMsgList) {
-            User user = userMapper.selectOne(new EmptyWrapper<User>().eq("name", i.getName()));
+            User user = userMapper.selectOne(new QueryWrapper<User>().eq("name", i.getName()));
             if (null != user) {
                 userMsgMapper.insert(i);
             }

@@ -6,6 +6,7 @@ import com.niu.chat.entity.User;
 import com.niu.chat.mapper.UserMapper;
 import com.niu.chat.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +42,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
     @Override
-    public User create(User user) {
+    public Integer create(User user) {
         return userMapper.insert(user);
     }
 
